@@ -2,7 +2,7 @@
 
 class Controller 
 {
-	protected $request;
+	public $request;
 	protected $response;
 	protected $viewData;
 	

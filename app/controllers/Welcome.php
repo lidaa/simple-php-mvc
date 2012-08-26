@@ -12,4 +12,10 @@ class Welcome extends Controller
 	{
 		$this->renderResponse('Demo');
 	}
+	
+	public function edit() 
+	{	
+		print_r($this->request->attributes);
+		$this->renderResponse('Edit');
+	}
 }

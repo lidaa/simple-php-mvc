@@ -19,10 +19,17 @@ class Dispatcher
 	{
 		foreach($this->routes as $route)
 		{
-			if($this->request->getPathInfo() === $route['_route'])
-			{
+			
+			$uri = str_replace('{', '(?P<', $route['_route']);
+			$uri = str_replace('}', '>[^/]+?)', $uri);
+			$uri = sprintf('#^%s$#', $uri);
+			
+			if(preg_match($uri, $this->request->getPathInfo(), $matches))
+			{	
 				$this->controller = $route['_controller'];
 				$this->action = $route['_action'];
+				
+				$this->extractParams($matches);
 				
 				return true;
 			}
@@ -42,14 +49,30 @@ class Dispatcher
 				$controller = new $this->controller();
 				if(method_exists($controller, $this->action))
 				{
+					$controller->request = $this->request;
 					return $controller->{$this->action}();
-				}			
+				}	
+				else
+				{
+					throw new Exception("Method '{$this->action}' not found.");					
+				}		
 			}
-		} 
+		}
 		else
 		{
-			throw new Exception('Route not found.');			
-		} 
-	
+			throw new Exception('Route not found.');	
+		}
 	}
+	
+	private function extractParams($mathes)
+	{
+		foreach($mathes as $key => $value)
+		{
+			if(!is_numeric($key))
+			{
+					$this->request->setAttribute($key, $value);
+			}
+		}
+	}
+
 }
