@@ -65,7 +65,7 @@ class Dispatcher
 	}
 	
 	private function extractParams($mathes)
-	{
+	{	
 		foreach($mathes as $key => $value)
 		{
 			if(!is_numeric($key))
@@ -73,6 +73,14 @@ class Dispatcher
 					$this->request->setAttribute($key, $value);
 			}
 		}
+
+		$params = explode('&', parse_url($this->request->getRequestUri(), PHP_URL_QUERY));
+		foreach($params as $param)
+		{
+			$args = explode('=', $param);
+			$this->request->setAttribute($args[0], $args[1]);
+		}
+		
 	}
 
 }
