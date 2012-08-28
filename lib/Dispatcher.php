@@ -70,17 +70,20 @@ class Dispatcher
 		{
 			if(!is_numeric($key))
 			{
-					$this->request->setAttribute($key, $value);
+				$this->request->setAttribute($key, $value);
 			}
 		}
 
-		$params = explode('&', parse_url($this->request->getRequestUri(), PHP_URL_QUERY));
-		foreach($params as $param)
+		$url_query = parse_url($this->request->getRequestUri(), PHP_URL_QUERY);
+		if($url_query)
 		{
-			$args = explode('=', $param);
-			$this->request->setAttribute($args[0], $args[1]);
+			$params = explode('&', $url_query);		
+			foreach($params as $param)
+			{
+				$args = explode('=', $param);
+				$this->request->setAttribute($args[0], $args[1]);
+			}
 		}
-		
 	}
 
 }
