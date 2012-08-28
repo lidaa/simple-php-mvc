@@ -2,7 +2,7 @@
 
 class Controller 
 {
-	public $request;
+	protected $request;
 	protected $response;
 	protected $viewData;
 	
@@ -35,5 +35,15 @@ class Controller
 	public function assign($name, $value)
 	{
 		$this->viewData[$name] = $value;
+	}
+
+	public function setRequest($request)
+	{
+		$this->request = $request;
+	}
+	
+	public function getRequest()
+	{
+		return $this->request;
 	}
 }
