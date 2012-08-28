@@ -50,7 +50,7 @@ class Dispatcher
 				$controller = new $this->controller();
 				if(method_exists($controller, $this->action))
 				{
-					$controller->request = $this->request;
+					$controller->setRequest($this->request);
 
 					return $controller->{$this->action}();
 				}	
