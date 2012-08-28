@@ -46,10 +46,12 @@ class Dispatcher
 			if(is_file($controller_path))
 			{
 				require($controller_path);
+
 				$controller = new $this->controller();
 				if(method_exists($controller, $this->action))
 				{
 					$controller->request = $this->request;
+
 					return $controller->{$this->action}();
 				}	
 				else
@@ -64,9 +66,9 @@ class Dispatcher
 		}
 	}
 	
-	private function extractParams($mathes)
+	private function extractParams($params)
 	{	
-		foreach($mathes as $key => $value)
+		foreach($params as $key => $value)
 		{
 			if(!is_numeric($key))
 			{
