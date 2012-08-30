@@ -75,7 +75,7 @@ class Dispatcher
 				$this->request->setAttribute($key, $value);
 			}
 		}
-
+		/*
 		$url_query = parse_url($this->request->getRequestUri(), PHP_URL_QUERY);
 		if($url_query)
 		{
@@ -86,6 +86,7 @@ class Dispatcher
 				$this->request->setAttribute($args[0], $args[1]);
 			}
 		}
+		*/
 	}
 
 }
