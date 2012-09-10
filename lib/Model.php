@@ -11,6 +11,16 @@ class Model
 			require_once('Database.php');
 			
 			self::$connection = DataBase::getInstance();
+			
+			if($this->tableName === null)
+			{
+				throw new Exception( "Attribute 'tableName' not found");
+			}
+			
+			if($this->primaryKey === null)
+			{
+				throw new Exception( "Attribute 'primaryKey' not found");
+			}
 		}
 		
 		public function findAll()
