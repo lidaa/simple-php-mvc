@@ -2,9 +2,9 @@
 
 class Model
 {
-		public $tableName = null;
-		public $primaryKey = null;		
-		private static $connection;
+		protected $tableName = null;
+		protected $primaryKey = null;		
+		protected static $connection;
 		
 		public function __construct()
 		{
@@ -22,14 +22,27 @@ class Model
 				throw new Exception( "Attribute 'primaryKey' not found");
 			}
 		}
-		
-		public function findAll()
+
+		protected function query($sql)
 		{
 			$connection = self::$connection;
-			$table_name = $this->tableName;
-			
-			$result = $connection->query("SELECT * FROM $table_name");		
+			$result = $connection->query($sql);		
+
+			return $result;
+		}		
+
+		protected function exec($sql)
+		{
+			$connection = self::$connection;
+			$result = $connection->exec($sql);		
 
 			return $result;
 		}
+
+		public function findAll()
+		{
+			$sql = sprintf('SELECT * FROM %s', $this->tableName);
+			
+			return $this->query($sql);
+		}	
 }
