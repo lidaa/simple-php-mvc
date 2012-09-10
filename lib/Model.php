@@ -23,8 +23,3 @@ class Model
 			return $result;
 		}
 }
-
-
-interface ModelInterface {
-	public function setTableName($table_name);
-}
