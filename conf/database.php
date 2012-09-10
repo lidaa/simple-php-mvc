@@ -4,6 +4,6 @@ $database = array();
 
 $database['host'] = 'localhost';
 $database['port'] = '';
-$database['name'] = 'test';
+$database['dbname'] = 'sfUtilisateurs';
 $database['user'] = 'root';
 $database['password'] = '';

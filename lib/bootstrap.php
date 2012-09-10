@@ -19,8 +19,16 @@ function init_routes()
 	return $routes;
 }
 
+
+function init_database()
+{
+	require_once(CONF_PATH . DS . 'database.php');	
+	return $database;
+}
+
+
 require_once('Request.php');
 require_once('Dispatcher.php');
 require_once('Controller.php');
-require_once('Pdo.php');
+require_once('Model.php');
 require_once('Response.php');
