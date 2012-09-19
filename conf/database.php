@@ -4,6 +4,6 @@ $database = array();
 
 $database['host'] = 'localhost';
 $database['port'] = '';
-$database['dbname'] = 'sfUtilisateurs';
+$database['dbname'] = 'symblog';
 $database['user'] = 'root';
-$database['password'] = '';
+$database['password'] = '123456';

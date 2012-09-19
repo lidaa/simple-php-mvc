@@ -19,13 +19,17 @@ function init_routes()
 	return $routes;
 }
 
-
 function init_database()
 {
 	require_once(CONF_PATH . DS . 'database.php');	
 	return $database;
 }
 
+function init_app_config()
+{
+	require_once(CONF_PATH . DS . 'app.php');	
+	return $app_config;
+}
 
 require_once('Request.php');
 require_once('Dispatcher.php');

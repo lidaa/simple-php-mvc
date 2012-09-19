@@ -5,13 +5,16 @@ class Controller
 	protected $request;
 	protected $response;
 	protected $viewData;
-	
+
 	public function __construct() 
 	{
 		$this->response = new Response();
 		$this->viewData = array();
+
+		$app_config = Init_app_Config();
+		$this->setLayout($app_config['default_layout']);
 	}
-	
+
 	public function renderView($view, $parameters = array())
 	{
 		$controller_name = get_class($this);
@@ -20,7 +23,7 @@ class Controller
 		
 		$this->response->setView($view_path, $this->viewData);
 		$response = $this->response;
-		
+
 		return $response();
 	}
 
@@ -35,6 +38,13 @@ class Controller
 	public function assign($name, $value)
 	{
 		$this->viewData[$name] = $value;
+	}
+
+	public function setLayout($layout) 
+	{
+		$layout_path = ($layout === null) ? null : APP_PATH . DS . 'views' . DS . $layout;
+
+		$this->response->setLayout($layout_path);
 	}
 
 	public function setRequest($request)

@@ -39,10 +39,17 @@ class Model
 			return $result;
 		}
 
-		public function findAll()
+		public function fetchAll()
 		{
 			$sql = sprintf('SELECT * FROM %s', $this->tableName);
 			
-			return $this->query($sql);
-		}	
+			return $this->query($sql)->fetchAll();
+		}
+		
+		public function fetch($id)
+		{
+			$sql = sprintf('SELECT * FROM %s WHERE %s = %s', $this->tableName, $this->primaryKey, $id);
+
+			return $this->query($sql)->fetch();
+		}
 }

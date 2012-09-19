@@ -1,4 +1,2 @@
 
-<h2>
-<?php echo 'Hello ', $name ?>
-</h2>
+<h2><?php echo $title; ?></h2>
