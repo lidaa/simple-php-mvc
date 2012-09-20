@@ -67,14 +67,14 @@ body
 	float: right;
 }
 
-#categories, #archives, #account, #search, .panel
+#categories, #archives, #account, .panel
 {
 	margin: auto;
 	width: 263px;
 	padding-bottom: 7px;
 }
 
-#categories_title, #archives_title, #account_title, #search_title, .panel_title
+#categories_title, #archives_title, #account_title, .panel_title
 {
 	height: 38px;
 	width: 263px;
@@ -119,8 +119,10 @@ body
 	text-decoration: none;
 }
 
-#search_title
+#search
 {
+	width: 300px;
+	float: right;
 }
 
 #search form, #search p
@@ -131,7 +133,6 @@ body
 
 #search form
 {
-	display: none;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
@@ -140,9 +141,20 @@ body
 {
 	border: 1px solid #e4e4e4;
 	padding: 5px;
-	width: 251px;
+	width: 100px;
 	color: #828282;
 }
+
+#search #search_form_text
+{
+	width: 200px;
+}
+
+#search #search_form_submit
+{
+	width: 50px;
+}
+
 
 #footer
 {

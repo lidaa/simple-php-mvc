@@ -8,7 +8,15 @@
   <body>
     <div id="header_container">
 		<div id="header">
-			<a href="/">Simple-PHP-MVC</a>
+			<a href="./">Simple-PHP-MVC</a>
+            <div id="search">
+				<form action="" id="search_form" name="search_form">
+					<p>
+						<input id="search_form_text" type="text" name="search" value="KEY" />
+						<input id="search_form_submit" type="submit" value="GO" />
+					</p>
+				</form>
+			</div>
 		</div>
 	</div>
 	<div id="content_container">
@@ -17,14 +25,6 @@
 		</div>
 
 		<div id="panel">
-            <div id="search">
-				<a id="search_title" href="#">Search</a>
-				<form action="/article/search" id="search_form">
-					<p>
-						<input type="text" name="search" />
-					</p>
-				</form>
-			</div>
 			<div id="categories"><a id="categories_title" class="category_button_title" href="#">Categories</a></div>
 			<div id="archives" class="category_button"><a id="archives_title" class="category_button_title" href="#">Archives</a></div>
 			<div id="account"><a id="account_title" href="#">Account</a></div>
