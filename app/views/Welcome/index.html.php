@@ -2,7 +2,7 @@
 <?php foreach($blogs as $blog) { ?>
 	<div class="article">
 		<div class="article_title">
-			<a href="#"><?php echo $blog['title']; ?></a> 
+			<a href="./index.php/blog/<?php echo $blog['id']; ?>/<?php echo $blog['slug']; ?>"><?php echo $blog['title']; ?></a> 
 			<span class="article_subtitle">(<?php echo $blog['created']; ?>)</span>
 		</div>
 		<div class="article_image">

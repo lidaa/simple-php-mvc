@@ -13,14 +13,11 @@ class Welcome extends Controller
 		$this->renderView('index.html.php');	
 	}
 	
-	public function demo() 
-	{
-		$this->renderResponse('Demo');
-	}
-
-	public function edit() 
+	public function show() 
 	{	
-		print_r($this->request->attributes);
-		$this->renderResponse('Edit');
+		$blog_model = $this->loadModel('Blog');
+		$sql = sprintf("SELECT * FROM blog WHERE id = %d", $this->request->getAttribute('id'));
+
+		$this->renderResponse('Demo');
 	}
 }
