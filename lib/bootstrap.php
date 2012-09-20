@@ -12,7 +12,6 @@ set_include_path(
 	LIB_PATH
 );
 
-
 function init_routes()
 {
 	require_once(CONF_PATH . DS . 'routes.php');	

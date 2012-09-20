@@ -4,9 +4,7 @@ class Welcome extends Controller
 {
 	public function index() 
 	{
-		$this->assign('title', 'Hello Word');
-
-		$this->setLayout(null);
+		$this->assign('title', 'titlePage');
 
 		$this->renderView('index.html.php');	
 	}
@@ -15,7 +13,7 @@ class Welcome extends Controller
 	{
 		$this->renderResponse('Demo');
 	}
-	
+
 	public function edit() 
 	{	
 		print_r($this->request->attributes);
