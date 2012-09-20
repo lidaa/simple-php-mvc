@@ -1,8 +1,3 @@
-html
-{
-	height: 100%;
-}
-
 body
 {
 	background-image: url("../img/background.jpg");
@@ -145,6 +140,7 @@ a.category_title
 .article
 {
 	padding-bottom: 40px;
+	float: left;
 }
 
 .article_title, .article_title a

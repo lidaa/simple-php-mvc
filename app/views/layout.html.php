@@ -30,6 +30,7 @@
 			<div class="category"><a class="category_title" href="https://github.com/lidaa/LidaaTwigBundle">Lidaa TwigBundle</a></div>
 			<div class="category"><a class="category_title" href="https://github.com/lidaa/LidaaGitBundle">Lidaa GitBundle</a></div>
 			<div class="category"><a class="category_title" href="https://github.com/lidaa/SF2Blog">SF2Blog</a></div>
+			<?php $this->getBlock('panel'); ?>
 
             <div style="margin: auto; text-align: center; padding-top: 20px; letter-spacing: 8px;">
                 <a href="#"><img src="./web/img/rss.png" alt="" /></a>
@@ -38,7 +39,7 @@
             </div>
 		</div>
 	</div>
-
+	<hr/>
 	<div id="footer">Based on <a href="https://github.com/lidaa/simple-php-mvc">simple-php-mvc</a> :)</div>
   </body>
 </html>

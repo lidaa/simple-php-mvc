@@ -56,4 +56,16 @@ class Controller
 	{
 		return $this->request;
 	}
+	
+	public function loadModel($name)
+	{
+		include(APP_PATH . DS .'models'. DS . $name . '.php');
+		
+		if (!class_exists($name, false)) {
+        	trigger_error("Class '$name' not found.", E_USER_WARNING);
+    	}
+
+		return new $name();
+	}
+
 }

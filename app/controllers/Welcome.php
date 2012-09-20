@@ -4,7 +4,11 @@ class Welcome extends Controller
 {
 	public function index() 
 	{
-		$this->assign('title', 'titlePage');
+		$blog = $this->loadModel('Blog');
+
+		$blogs = $blog->selectAll();
+
+		$this->assign('blogs', $blogs);
 
 		$this->renderView('index.html.php');	
 	}
