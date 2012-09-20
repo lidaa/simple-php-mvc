@@ -67,54 +67,22 @@ body
 	float: right;
 }
 
-#categories, #archives, #account, .panel
+.category
 {
 	margin: auto;
 	width: 263px;
 	padding-bottom: 7px;
 }
 
-#categories_title, #archives_title, #account_title, .panel_title
+a.category_title
 {
 	height: 38px;
 	width: 263px;
 	background-image: url("../img/button1.jpg");
 	color: #828282;
 	font-size: 14px;
-	text-transform: uppercase;
 	line-height: 38px;
 	text-align: center;
-	display: block;
-	text-decoration: none;
-}
-
-#categories ul, #archives ul, #account ul, .panel ul
-{
-	margin: auto;
-	padding: 0px;
-	list-style-type: none;
-	width: 263px;
-	padding-bottom: 7px;
-	display: none;
-}
-
-#categories ul li, #archives ul li, #account ul li, .panel ul li
-{
-	background-image: url("../img/hr.jpg");
-	background-position: 0px 36px;
-	background-repeat: no-repeat;
-	height: 38px;
-	width: 263px;
-	text-align: center;
-}
-
-#categories ul li a, #archives ul li a, #account ul li a, .panel ul li a
-{
-	color: #a8a8a8;
-	font-size: 12px;
-	line-height: 38px;
-	height: 38px;
-	width: 263px;
 	display: block;
 	text-decoration: none;
 }
@@ -275,7 +243,7 @@ a:hover.article_tag
 {
 }
 
-.not_seo_title, .category_title, h1
+.not_seo_title, h1
 {
 	font-size: 24px;
 	color: #147faf;
