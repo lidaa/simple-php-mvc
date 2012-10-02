@@ -23,7 +23,7 @@ class Model
 		}
 	}
 
-	protected function query($sql)
+	public function query($sql)
 	{
 		$connection = self::$connection;
 		$result = $connection->query($sql);		

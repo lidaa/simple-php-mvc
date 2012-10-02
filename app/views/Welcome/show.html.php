@@ -1,5 +1,5 @@
 
-<?php foreach($blogs as $blog) { ?>
+
 	<div class="article">
 		<div class="article_title">
 			<a href="<?php echo $this->getParam('base_url'); ?>/blog/<?php echo $blog['id']; ?>/<?php echo $blog['slug']; ?>"><?php echo $blog['title']; ?></a> 
@@ -11,7 +11,7 @@
 		<div class="article_content"><?php echo substr($blog['blog'], 0, 250); ?>...</div>
 	</div>
 	<div style="clear: both;"></div>
-<?php } ?>
+
 
 <?php $this->startBlock('panel') ?>
 <div class="category"><a class="category_title" href="https://github.com/cakephp/cakephp">CakePHP2</a></div>

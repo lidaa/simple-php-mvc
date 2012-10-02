@@ -26,7 +26,7 @@ function init_database()
 
 function init_app_config()
 {
-	require_once(CONF_PATH . DS . 'app.php');	
+	require(CONF_PATH . DS . 'app.php');
 	return $app_config;
 }
 

@@ -23,7 +23,7 @@ class Dispatcher
 			$uri = str_replace('{', '(?P<', $route['_route']);
 			$uri = str_replace('}', '>[^/]+?)', $uri);
 			$uri = sprintf('#^%s$#', $uri);
-			
+
 			if(preg_match($uri, $this->request->getPathInfo(), $matches))
 			{	
 				$this->controller = $route['_controller'];

@@ -29,6 +29,10 @@ class Request
 		{
 			$this->pathInfo = $this->server['PATH_INFO'];
 		}
+		else
+		{
+			$this->pathInfo = $this->preparePathInfo();			
+		}
 		
 		return $this->pathInfo;
 	}
@@ -43,6 +47,14 @@ class Request
 		return $this->requestUri;
 	}
 	
+	public function getScriptName()
+	{
+		if(isset($this->server['SCRIPT_NAME']))
+		{
+			return $this->server['SCRIPT_NAME'];
+		}
+	}
+
 	public function setAttribute($name, $value)
 	{
 		$this->attributes[$name] = $value;
@@ -100,6 +112,40 @@ class Request
 		}
 		
 		return $this->method;
+	}
+
+    protected function preparePathInfo()
+    {
+        $baseUrl = $this->getBaseUrl();
+
+		echo $this->getRequestUri();
+		exit;
+
+        if (null === ($requestUri = $this->getRequestUri())) {
+            return '/';
+        }
+
+        $pathInfo = '/';
+
+        // Remove the query string from REQUEST_URI
+        if ($pos = strpos($requestUri, '?')) {
+            $requestUri = substr($requestUri, 0, $pos);
+        }
+
+        if ((null !== $baseUrl) && (false === ($pathInfo = substr($requestUri, strlen($baseUrl))))) {
+            // If substr() returns false then PATH_INFO is set to an empty string
+            return '/';
+        } elseif (null === $baseUrl) {
+            return $requestUri;
+        }
+
+        return (string) $pathInfo;
+    }
+
+	protected function getBaseUrl()
+	{		
+		$app_config = init_app_Config();
+		$param = (isset($app_config['base_url'])) ? $app_config['base_url'] : null;
 	}
 
 	public function __toString()

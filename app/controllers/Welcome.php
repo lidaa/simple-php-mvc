@@ -17,7 +17,11 @@ class Welcome extends Controller
 	{	
 		$blog_model = $this->loadModel('Blog');
 		$sql = sprintf("SELECT * FROM blog WHERE id = %d", $this->request->getAttribute('id'));
+						     
+		$blog = $blog_model->query($sql)->fetch();
 
-		$this->renderResponse('Demo');
+		$this->assign('blog', $blog);
+
+		$this->renderView('show.html.php');	
 	}
 }

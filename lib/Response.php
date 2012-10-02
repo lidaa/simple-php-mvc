@@ -5,6 +5,7 @@ class Response
 	private $headers;
 	private $layout;
 	private $block;
+	private $webRoute;
 	protected $content;
 	
 	public function __construct() 
@@ -73,6 +74,36 @@ class Response
 		}
 		
 		echo $block;
+	}
+
+	public function getBaseUrl($with_ssl = false)
+	{
+		$base_url = $this->getParam('base_url');
+		
+		if($with_ssl)
+		{
+			if(strpos($base_url, 'http://') !== false )
+			{
+				$base_url = str_replace('http://', 'https://', $base_url);
+			}
+		}
+		else
+		{
+			if(strpos($base_url, 'https://') !== false )
+			{
+				$base_url = str_replace('https://', 'http://', $base_url);
+			}
+		}
+
+		return $base_url;
+	}
+
+	public function getParam($key, $default = null)
+	{
+		$app_config = init_app_Config();
+		$param = (isset($app_config[$key])) ? $app_config[$key] : $default;
+
+		return $param;
 	}
 
 	public function __invoke()
