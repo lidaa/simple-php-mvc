@@ -31,9 +31,9 @@ class Request
 		}
 		else
 		{
-			$this->pathInfo = $this->preparePathInfo();			
+			$this->pathInfo = $this->preparePathInfo();
 		}
-		
+
 		return $this->pathInfo;
 	}
 	
@@ -116,30 +116,29 @@ class Request
 
     protected function preparePathInfo()
     {
-        $baseUrl = $this->getBaseUrl();
+		$path_info = '/';
 
-		echo $this->getRequestUri();
-		exit;
+		if(null !== $this->getRequestUri())
+		{
+			$path_info = parse_url($this->getRequestUri(), PHP_URL_PATH);
 
-        if (null === ($requestUri = $this->getRequestUri())) {
-            return '/';
-        }
+			if(isset($this->server['SCRIPT_NAME']))
+			{
+				$base_path = $this->server['SCRIPT_NAME'];
+			}
+			elseif(isset($this->server['PHP_SELF']))
+			{
+				$base_path = $this->server['PHP_SELF'];
+			}
 
-        $pathInfo = '/';
+			$path_info = substr($path_info, strlen(dirname($base_path)));
+		}
 
-        // Remove the query string from REQUEST_URI
-        if ($pos = strpos($requestUri, '?')) {
-            $requestUri = substr($requestUri, 0, $pos);
-        }
 
-        if ((null !== $baseUrl) && (false === ($pathInfo = substr($requestUri, strlen($baseUrl))))) {
-            // If substr() returns false then PATH_INFO is set to an empty string
-            return '/';
-        } elseif (null === $baseUrl) {
-            return $requestUri;
-        }
+		$path_info = trim($path_info, '/');
+		$path_info = '/' . $path_info;
 
-        return (string) $pathInfo;
+        return (string) $path_info;
     }
 
 	protected function getBaseUrl()
