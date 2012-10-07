@@ -5,12 +5,13 @@ class Response
 	private $headers;
 	private $layout;
 	private $block;
-	private $webRoute;
+	private $BaseUrl;
+	private $AssetsUrl;
 	protected $content;
 	
 	public function __construct() 
 	{	
-		$this->hearders = array();
+		$this->headers = array();
 		$this->content = '';
 	}
 
@@ -37,7 +38,7 @@ class Response
 	{
 		$this->content = $content;
 	}
-	
+    
 	public function setLayout($layout)
 	{
 		$this->layout = $layout;
@@ -78,36 +79,58 @@ class Response
 
 	public function getBaseUrl($with_ssl = false)
 	{
-		$base_url = $this->getParam('base_url');
-		
+                $url = $this->BaseUrl;
+                
+                return $this->ModifyUrl($url, $with_ssl);
+	}
+
+	public function getAssetsUrl($with_ssl = false)
+	{
+                $url = $this->AssetsUrl;
+                
+                return $this->ModifyUrl($url, $with_ssl);
+	}
+
+        public function setBaseUrl($base_url)
+	{
+                $this->BaseUrl = $base_url;
+                
+                return $this;
+	}
+
+	public function setAssetsUrl($assets_url)
+	{
+                $this->AssetsUrl = $assets_url;
+                
+                return $this;
+	}
+        
+        private function ModifyUrl($url, $with_ssl)
+        {
 		if($with_ssl)
 		{
-			if(strpos($base_url, 'http://') !== false )
+			if(strpos($url, 'http://') !== false )
 			{
-				$base_url = str_replace('http://', 'https://', $base_url);
+				$url = str_replace('http://', 'https://', $url);
 			}
 		}
 		else
 		{
-			if(strpos($base_url, 'https://') !== false )
+			if(strpos($url, 'https://') !== false )
 			{
-				$base_url = str_replace('https://', 'http://', $base_url);
+				$url = str_replace('https://', 'http://', $url);
 			}
 		}
 
-		return $base_url;
-	}
-
-	public function getParam($key, $default = null)
-	{
-		$app_config = init_app_Config();
-		$param = (isset($app_config[$key])) ? $app_config[$key] : $default;
-
-		return $param;
-	}
+		return $url;            
+        }
 
 	public function __invoke()
 	{
-		echo $this->content;
+            foreach ($this->headers as $key => $value) {
+                header($key. ':' . $value);
+            }
+            
+            echo $this->content;
 	}
 }
