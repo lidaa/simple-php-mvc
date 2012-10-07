@@ -20,10 +20,13 @@ class DataBase extends PDO
 		$this->pwd = $params['password'];
 		
 		$this->dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname;
+                
+                $options = array();
+                $options[parent::ATTR_ERRMODE] = parent::ERRMODE_EXCEPTION;
 		
 		try 
 		{
-			self::$instance = parent::__construct($this->dsn, $this->user, $this->pwd);
+			self::$instance = parent::__construct($this->dsn, $this->user, $this->pwd, $options);
 		} catch (PDOException $e) 
 		{
 			die('Connection failed: ' . $e->getMessage());
