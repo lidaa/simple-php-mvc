@@ -38,8 +38,22 @@ class Model
 
 		return $result;
 	}
-		
-	/*
+	
+        protected function delete($id)
+        {
+            $sql = sprintf("DELETE FROM %s WHERE %s = %d", $this->tableName, $this->primaryKey, $id);
+            
+            return $this->exec($sql);
+        }
+        
+        public function fetchOne($id)
+	{
+		$sql = sprintf('SELECT * FROM %s WHERE %s = %s', $this->tableName, $this->primaryKey, $id);
+
+		return $this->query($sql)->fetch();
+	}
+        
+        /*
 	public function fetchAll()
 	{
 		$sql = sprintf('SELECT * FROM %s', $this->tableName);
