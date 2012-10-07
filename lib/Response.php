@@ -138,6 +138,15 @@ class Response
 
 		return $url;            
         }
+                
+	public function includePartial($partial, $params = array())
+	{
+            extract($params);
+            
+            $partial_path = APP_PATH . DS . 'views' . DS . 'Partials' . DS . $partial;
+            
+            include($partial_path);
+	}
 
 	public function __invoke()
 	{
