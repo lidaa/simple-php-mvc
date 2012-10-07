@@ -38,6 +38,20 @@ class Response
 	{
 		$this->content = $content;
 	}
+	
+        public function redirect($url, $permanent)
+        {
+            if ($permanent)
+            {
+                $this->headers['Status'] = '301 Moved Permanently';
+            }
+            else
+            {
+                $this->headers['Status'] = '302 Found';
+            }
+                
+            $this->headers['location'] = $url;
+        }
     
 	public function setLayout($layout)
 	{
