@@ -77,6 +77,13 @@ class Controller
 		return new $name();
 	}
         
+        public function redirect($url, $permanent = false)
+        {
+            $this->response->redirect($url, $permanent);
+            
+            $this->renderResponse('Redirecting...');
+        }
+
 	public function getParam($key, $default = null)
 	{
 		$app_config = init_app_Config();
