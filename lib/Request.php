@@ -65,6 +65,11 @@ class Request
 		return $this->attributes[$name];
 	}
 
+        public function getAttributes()
+	{
+		return $this->attributes;
+	}
+
 	public function getGetParam($name)
 	{
 		return isset($this->get[$name]) ? $this->get[$name] : null;
