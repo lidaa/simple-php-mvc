@@ -13,7 +13,11 @@ class Controller
 
 		$app_config = Init_app_Config();
 		$this->setLayout($app_config['default_layout']);
-	}
+                
+                $this->response->setBaseUrl($app_config['base_url'])
+                               ->setAssetsUrl($app_config['assets_url']);
+                
+        }
 
 	public function renderView($view, $parameters = array())
 	{
@@ -51,7 +55,7 @@ class Controller
 	{
 		$this->setLayout(null);
 	}
-
+        
 	public function setRequest($request)
 	{
 		$this->request = $request;
@@ -72,5 +76,51 @@ class Controller
 
 		return new $name();
 	}
+        
+	public function getParam($key, $default = null)
+	{
+		$app_config = init_app_Config();
+                
+                $params  = $app_config['params'];
+                
+		$param = (isset($params[$key])) ? $$params[$key] : $default;
 
+		return $param;
+	}
+        
+        public function getBaseUrl($with_ssl = false)
+	{
+                $app_config = Init_app_Config();
+		$url = $app_config['base_url'];
+                
+                return $this->ModifyUrl($url, $with_ssl);
+	}
+
+	public function getAssetsUrl($with_ssl = false)
+	{
+                $app_config = Init_app_Config();
+		$url = $app_config['assets_url'];
+                
+                return $this->ModifyUrl($url, $with_ssl);
+	}
+        
+        private function ModifyUrl($url, $with_ssl)
+        {
+		if($with_ssl)
+		{
+			if(strpos($url, 'http://') !== false )
+			{
+				$url = str_replace('http://', 'https://', $url);
+			}
+		}
+		else
+		{
+			if(strpos($url, 'https://') !== false )
+			{
+				$url = str_replace('https://', 'http://', $url);
+			}
+		}
+
+		return $url;            
+        }
 }
