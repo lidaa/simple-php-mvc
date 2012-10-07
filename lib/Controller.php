@@ -47,6 +47,11 @@ class Controller
 		$this->response->setLayout($layout_path);
 	}
 
+        public function disableLayout() 
+	{
+		$this->setLayout(null);
+	}
+
 	public function setRequest($request)
 	{
 		$this->request = $request;
