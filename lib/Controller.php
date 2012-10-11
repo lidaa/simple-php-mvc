@@ -11,7 +11,7 @@ class Controller
 		$this->response = new Response();
 		$this->viewData = array();
 
-		$app_config = Init_app_Config();
+		$app_config = init_app_config();
 		$this->setLayout($app_config['default_layout']);
                 
                 $this->response->setBaseUrl($app_config['base_url'])
@@ -86,18 +86,18 @@ class Controller
 
 	public function getParam($key, $default = null)
 	{
-		$app_config = init_app_Config();
+		$app_config = init_app_config();
                 
                 $params  = $app_config['params'];
                 
-		$param = (isset($params[$key])) ? $$params[$key] : $default;
+		$param = (isset($params[$key])) ? $params[$key] : $default;
 
 		return $param;
 	}
         
         public function getBaseUrl($with_ssl = false)
 	{
-                $app_config = Init_app_Config();
+                $app_config = init_app_config();
 		$url = $app_config['base_url'];
                 
                 return $this->ModifyUrl($url, $with_ssl);
@@ -105,7 +105,7 @@ class Controller
 
 	public function getAssetsUrl($with_ssl = false)
 	{
-                $app_config = Init_app_Config();
+                $app_config = init_app_config();
 		$url = $app_config['assets_url'];
                 
                 return $this->ModifyUrl($url, $with_ssl);
