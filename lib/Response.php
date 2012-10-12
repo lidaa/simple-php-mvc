@@ -4,7 +4,7 @@ class Response
 {
 	private $headers;
 	private $layout;
-	private $block;
+	private $blocks;
 	private $BaseUrl;
 	private $AssetsUrl;
 	protected $content;
@@ -22,7 +22,7 @@ class Response
 		require($view);
 		if($this->layout !== null)
 		{
-			$this->block['VIEW_CONTENT'] = ob_get_contents();
+			$this->blocks['VIEW_CONTENT'] = ob_get_contents();
 			ob_end_clean();
 
 			require($this->layout);
@@ -66,15 +66,15 @@ class Response
 		}
 
 		ob_start();
-		$this->block[$name] = '';
+		$this->blocks[$name] = $name;
 	}
 
 	public function endBlock()
 	{
-		$blocks = $this->block;
-
-		$name = sprintf('VIEW_%s', strtoupper(key($blocks)));
-		$this->block[$name] = ob_get_contents();
+		$blocks = $this->blocks;
+                
+		$name = sprintf('VIEW_%s', strtoupper(end($blocks)));
+		$this->blocks[$name] = ob_get_contents();
 
 		ob_end_clean();
 	}
@@ -83,9 +83,9 @@ class Response
 	{
 		$block = null;
 		$name = sprintf('VIEW_%s', strtoupper($name));
-		if(isset($this->block[$name])) 
+		if(isset($this->blocks[$name])) 
 		{
-			$block = $this->block[$name];
+			$block = $this->blocks[$name];
 		}
 		
 		echo $block;
