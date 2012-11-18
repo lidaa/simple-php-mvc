@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <title>Simple PHP MVC Project</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $this->getParam('assets_url'); ?>/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $this->getAssetsUrl(); ?>/css/style.css" />
   </head>
 
   <body>
