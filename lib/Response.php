@@ -167,4 +167,3 @@ class Response
         echo $this->content;
     }
 }
-

@@ -14,13 +14,13 @@ set_include_path(
 
 function init_routes()
 {
-	require_once(CONF_PATH . DS . 'routes.php');	
+	require(CONF_PATH . DS . 'routes.php');	
 	return $routes;
 }
 
 function init_database()
 {
-	require_once(CONF_PATH . DS . 'database.php');	
+	require(CONF_PATH . DS . 'database.php');	
 	return $database;
 }
 
