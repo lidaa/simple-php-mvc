@@ -6,4 +6,4 @@ $database['host'] = 'localhost';
 $database['port'] = '';
 $database['dbname'] = 'symblog';
 $database['user'] = 'root';
-$database['password'] = '123456';
+$database['password'] = '';
