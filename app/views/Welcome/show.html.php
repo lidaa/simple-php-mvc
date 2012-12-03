@@ -1,12 +1,11 @@
 
-
 	<div class="article">
 		<div class="article_title">
-			<a href="<?php echo $this->getParam('base_url'); ?>/blog/<?php echo $blog['id']; ?>/<?php echo $blog['slug']; ?>"><?php echo $blog['title']; ?></a> 
+			<a href="<?php echo $this->getBaseUrl(); ?>/blog/<?php echo $blog['id']; ?>/<?php echo $blog['slug']; ?>"><?php echo $blog['title']; ?></a> 
 			<span class="article_subtitle">(<?php echo $blog['created']; ?>)</span>
 		</div>
 		<div class="article_image">
-			<a href="#"><img width="200px" src="<?php echo $this->getParam('assets_url'); ?>/img/<?php echo $blog['image']; ?>" /></a>
+			<a href="#"><img width="200px" src="<?php echo $this->getAssetsUrl(); ?>/img/<?php echo $blog['image']; ?>" /></a>
 		</div>
 		<div class="article_content"><?php echo substr($blog['blog'], 0, 250); ?>...</div>
 	</div>
