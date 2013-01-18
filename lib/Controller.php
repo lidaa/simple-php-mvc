@@ -82,6 +82,8 @@ class Controller
         $this->response->redirect($url, $permanent);
 
         $this->renderResponse('Redirecting...');
+        
+        exit;
     }
 
     public function getParam($key, $default = null)
