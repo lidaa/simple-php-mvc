@@ -20,7 +20,8 @@ class Controller
 
     public function renderView($view, $parameters = array())
     {
-        $controller_name = get_class($this);
+        $controller_name = strtolower($this->getName());
+        
         $view_path = APP_PATH . DS . 'views' . DS . $controller_name . DS . $view;
         $this->viewData = array_merge($this->viewData, $parameters);
 
@@ -111,6 +112,14 @@ class Controller
         $url = $app_config['assets_url'];
 
         return $this->ModifyUrl($url, $with_ssl);
+    }
+
+    protected function getName()
+    {
+        $full_name = get_class($this);
+        $name = substr($full_name, 0, -10);
+                
+        return $name;
     }
 
     private function ModifyUrl($url, $with_ssl)

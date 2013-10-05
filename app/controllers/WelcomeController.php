@@ -1,8 +1,8 @@
 <?php
 
-class Welcome extends Controller
+class WelcomeController extends Controller
 {
-	public function index() 
+	public function indexAction() 
 	{
 		$blog = $this->loadModel('Blog');
 
@@ -13,7 +13,7 @@ class Welcome extends Controller
 		$this->renderView('index.html.php');	
 	}
 	
-	public function show() 
+	public function showAction() 
 	{	
 		$blog_model = $this->loadModel('Blog');
 		$sql = sprintf("SELECT * FROM blog WHERE id = %d", $this->request->getAttribute('id'));

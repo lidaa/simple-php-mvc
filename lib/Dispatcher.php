@@ -25,8 +25,8 @@ class Dispatcher
 
             if(preg_match($uri, $this->request->getPathInfo(), $matches))
             {	
-                $this->controller = $route['_controller'];
-                $this->action = $route['_action'];
+                $this->controller = ucfirst($route['_controller']).'Controller';
+                $this->action = $route['_action'].'Action';
 
                 $this->extractParams($matches);
 
@@ -41,7 +41,7 @@ class Dispatcher
     {
         if($this->match())
         {
-            $controller_path = APP_PATH . DS . 'controllers' . DS . $this->controller . '.php';
+            $controller_path = APP_PATH . DS . 'controllers' . DS . $this->controller . '.php';            
             if(is_file($controller_path))
             {
                 require_once($controller_path);
@@ -57,6 +57,10 @@ class Dispatcher
                 {
                     throw new Exception("Method '{$this->action}' not found.");					
                 }		
+            }
+            else 
+            {
+                throw new Exception("Controller '{$this->controller}' not found.");
             }
         }
         else
